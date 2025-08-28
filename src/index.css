@@ -58,7 +58,7 @@
     --chat-input: 222 25% 15%;
   }
 
-  /* Light theme - Alice maintains dark theme by default */
+  /* Light theme */
   .light {
     --background: 0 0% 100%;
     --foreground: 222.2 84% 4.9%;
@@ -68,6 +68,7 @@
     --popover-foreground: 222.2 84% 4.9%;
     --primary: 217 91% 60%;
     --primary-foreground: 0 0% 100%;
+    --primary-glow: 240 100% 70%;
     --secondary: 210 40% 96.1%;
     --secondary-foreground: 222.2 47.4% 11.2%;
     --muted: 210 40% 96.1%;
@@ -79,6 +80,19 @@
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
     --ring: 217 91% 60%;
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 217 91% 60%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217 91% 60%;
+    --alice-gradient: linear-gradient(135deg, hsl(217 91% 60%), hsl(240 100% 70%));
+    --alice-glow: 0 0 30px hsl(217 91% 60% / 0.3);
+    --message-user: 217 91% 60%;
+    --message-assistant: 210 40% 96.1%;
+    --chat-input: 210 40% 96.1%;
   }
 }
 

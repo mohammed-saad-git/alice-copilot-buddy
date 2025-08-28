@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Plus, MessageSquare, Settings, Trash2 } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import {
   Sidebar,
   SidebarContent,
@@ -24,6 +25,7 @@ interface ChatSession {
 }
 
 export function ChatSidebar() {
+  const navigate = useNavigate();
   const [sessions, setSessions] = useState<ChatSession[]>([
     {
       id: "1",
@@ -153,6 +155,7 @@ export function ChatSidebar() {
         <Button 
           variant="ghost" 
           size="sm"
+          onClick={() => navigate("/settings")}
           className="w-full justify-start gap-2 text-sidebar-foreground/80 hover:bg-sidebar-accent"
         >
           <Settings className="w-4 h-4" />
