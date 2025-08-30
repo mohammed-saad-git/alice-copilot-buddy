@@ -101,9 +101,13 @@
     @apply border-border;
   }
 
-  body {
-    @apply bg-background text-foreground font-sans;
+  html, body, #root {
+    @apply min-h-screen w-full bg-background text-foreground font-sans;
     transition: var(--transition-smooth);
+  }
+
+  body {
+    @apply overflow-hidden;
   }
 
   /* Alice chatbot custom animations */

@@ -76,14 +76,21 @@ export function ChatArea() {
   };
 
   return (
-    <div className="flex flex-col h-screen bg-background">
+    <div className="flex flex-col h-full w-full bg-background relative overflow-hidden">
+      {/* Background gradient overlay */}
+      <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-background/80 pointer-events-none"></div>
+      
       {/* Header */}
-      <header className="flex items-center justify-between p-4 border-b border-border bg-card/50 backdrop-blur-sm">
-        <div className="flex items-center gap-3">
-          <SidebarTrigger className="h-8 w-8" />
+      <header className="relative z-10 flex items-center justify-between p-4 border-b border-border/50 bg-card/30 backdrop-blur-xl">
+        <div className="flex items-center gap-3 animate-fade-in">
+          <SidebarTrigger className="h-8 w-8 hover:bg-accent/50 transition-colors" />
           <div className="flex items-center gap-2">
-            <Sparkles className="w-5 h-5 text-primary" />
-            <h1 className="font-semibold text-lg">Alice AI</h1>
+            <div className="alice-gradient w-8 h-8 rounded-full flex items-center justify-center animate-glow-pulse">
+              <Sparkles className="w-4 h-4 text-white" />
+            </div>
+            <h1 className="font-semibold text-lg bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+              Alice AI
+            </h1>
           </div>
         </div>
         
@@ -121,17 +128,29 @@ export function ChatArea() {
       </header>
 
       {/* Messages area */}
-      <div className="flex-1 overflow-y-auto custom-scrollbar">
+      <div className="relative z-10 flex-1 overflow-y-auto custom-scrollbar bg-gradient-to-b from-transparent to-background/20">
         <div className="space-y-6 p-6">
           {messages.length === 0 ? (
-            <div className="flex flex-col items-center justify-center h-full text-center">
-              <div className="alice-gradient w-16 h-16 rounded-full flex items-center justify-center mb-4">
-                <Sparkles className="w-8 h-8 text-white" />
+            <div className="flex flex-col items-center justify-center h-full text-center animate-fade-in">
+              <div className="alice-gradient w-20 h-20 rounded-full flex items-center justify-center mb-6 animate-glow-pulse shadow-2xl">
+                <Sparkles className="w-10 h-10 text-white" />
               </div>
-              <h2 className="text-2xl font-semibold mb-2">Welcome to Alice</h2>
-              <p className="text-muted-foreground max-w-md">
+              <h2 className="text-3xl font-bold mb-3 bg-gradient-to-r from-foreground to-muted-foreground bg-clip-text text-transparent">
+                Welcome to Alice
+              </h2>
+              <p className="text-muted-foreground max-w-md text-lg leading-relaxed">
                 Your intelligent AI assistant is ready to help. Ask me anything or start a conversation!
               </p>
+              <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-4 max-w-2xl">
+                <div className="p-4 rounded-lg border border-border/50 bg-card/30 backdrop-blur-sm hover:bg-card/50 transition-all duration-300 cursor-pointer">
+                  <h3 className="font-semibold text-sm mb-2">💡 Creative Writing</h3>
+                  <p className="text-xs text-muted-foreground">Get help with stories, essays, and creative content</p>
+                </div>
+                <div className="p-4 rounded-lg border border-border/50 bg-card/30 backdrop-blur-sm hover:bg-card/50 transition-all duration-300 cursor-pointer">
+                  <h3 className="font-semibold text-sm mb-2">🔧 Problem Solving</h3>
+                  <p className="text-xs text-muted-foreground">Find solutions to coding and technical challenges</p>
+                </div>
+              </div>
             </div>
           ) : (
             <>
@@ -159,10 +178,12 @@ export function ChatArea() {
       </div>
 
       {/* Input area */}
-      <ChatInput 
-        onSendMessage={handleSendMessage}
-        disabled={isTyping}
-      />
+      <div className="relative z-10 bg-gradient-to-t from-background via-background/95 to-transparent">
+        <ChatInput 
+          onSendMessage={handleSendMessage}
+          disabled={isTyping}
+        />
+      </div>
     </div>
   );
 }

@@ -27,16 +27,17 @@ export function ChatInput({ onSendMessage, disabled = false }: ChatInputProps) {
   };
 
   return (
-    <div className="border-t border-border bg-background/80 backdrop-blur-sm">
+    <div className="border-t border-border/30 bg-card/20 backdrop-blur-xl">
       <div className="max-w-4xl mx-auto p-4">
         <div className="relative">
           {/* Input container */}
-          <div className="flex items-end gap-2 p-3 rounded-2xl bg-alice-chat-input border border-border">
+          <div className="flex items-end gap-3 p-3 rounded-2xl bg-alice-chat-input border border-border/50 shadow-lg hover:bg-card/70 focus-within:bg-card/80 transition-all duration-300 backdrop-blur-sm">
             {/* Attachment button */}
             <Button
               size="sm"
               variant="ghost"
-              className="flex-shrink-0 h-8 w-8 p-0 hover:bg-muted"
+              className="flex-shrink-0 h-8 w-8 p-0 rounded-full hover:bg-accent/50 transition-all duration-300"
+              disabled={disabled}
             >
               <Paperclip className="w-4 h-4" />
             </Button>
@@ -51,7 +52,7 @@ export function ChatInput({ onSendMessage, disabled = false }: ChatInputProps) {
               className={cn(
                 "min-h-0 max-h-32 resize-none border-0 bg-transparent",
                 "focus-visible:ring-0 focus-visible:ring-offset-0 px-0 py-1",
-                "placeholder:text-muted-foreground"
+                "placeholder:text-muted-foreground/70 text-sm"
               )}
               rows={1}
               style={{
@@ -69,7 +70,8 @@ export function ChatInput({ onSendMessage, disabled = false }: ChatInputProps) {
             <Button
               size="sm"
               variant="ghost"
-              className="flex-shrink-0 h-8 w-8 p-0 hover:bg-muted"
+              className="flex-shrink-0 h-8 w-8 p-0 rounded-full hover:bg-accent/50 transition-all duration-300"
+              disabled={disabled}
             >
               <Mic className="w-4 h-4" />
             </Button>
@@ -81,21 +83,22 @@ export function ChatInput({ onSendMessage, disabled = false }: ChatInputProps) {
               size="sm"
               className={cn(
                 "flex-shrink-0 h-8 w-8 p-0 rounded-full",
-                "bg-primary hover:bg-primary/90 alice-glow",
-                "disabled:opacity-50 disabled:shadow-none"
+                "alice-gradient hover:scale-105 alice-glow shadow-lg",
+                "disabled:opacity-50 disabled:scale-100 disabled:shadow-none",
+                "transition-all duration-300"
               )}
             >
-              <Send className="w-4 h-4" />
+              <Send className="w-4 h-4 text-white" />
             </Button>
           </div>
 
-          {/* Character count or other info */}
-          <div className="flex justify-between items-center mt-2 px-2">
-            <span className="text-xs text-muted-foreground">
+          {/* Helper text */}
+          <div className="flex justify-between items-center mt-3 px-2">
+            <span className="text-xs text-muted-foreground/70">
               {message.length > 0 && `${message.length} characters`}
             </span>
-            <span className="text-xs text-muted-foreground">
-              Shift + Enter for new line
+            <span className="text-xs text-muted-foreground/70">
+              Press Enter to send, Shift+Enter for new line
             </span>
           </div>
         </div>
