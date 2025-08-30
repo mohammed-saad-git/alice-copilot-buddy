@@ -2,7 +2,14 @@ import { useState, useRef, useEffect } from "react";
 import { ChatMessage } from "./ChatMessage";
 import { ChatInput } from "./ChatInput";
 import { SidebarTrigger } from "@/components/ui/sidebar";
-import { Sparkles } from "lucide-react";
+import { Sparkles, ChevronDown } from "lucide-react";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { Button } from "@/components/ui/button";
 
 interface Message {
   id: string;
@@ -21,6 +28,7 @@ export function ChatArea() {
     },
   ]);
   const [isTyping, setIsTyping] = useState(false);
+  const [mode, setMode] = useState<"flash" | "pro">("flash");
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const scrollToBottom = () => {
@@ -79,9 +87,37 @@ export function ChatArea() {
           </div>
         </div>
         
-        <div className="text-sm text-muted-foreground">
-          Ready to help
-        </div>
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button variant="outline" size="sm" className="gap-2">
+              {mode === "flash" ? "Flash" : "Pro"}
+              <span className="text-xs text-muted-foreground">
+                {mode === "flash" ? "(balanced mode)" : "(advanced mode)"}
+              </span>
+              <ChevronDown className="w-3 h-3" />
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent align="end" className="w-56">
+            <DropdownMenuItem 
+              onClick={() => setMode("flash")}
+              className={mode === "flash" ? "bg-accent" : ""}
+            >
+              <div className="flex flex-col gap-1">
+                <div className="font-medium">Flash</div>
+                <div className="text-xs text-muted-foreground">Balanced mode - Quick and efficient responses</div>
+              </div>
+            </DropdownMenuItem>
+            <DropdownMenuItem 
+              onClick={() => setMode("pro")}
+              className={mode === "pro" ? "bg-accent" : ""}
+            >
+              <div className="flex flex-col gap-1">
+                <div className="font-medium">Pro</div>
+                <div className="text-xs text-muted-foreground">Advanced mode - Detailed and comprehensive responses</div>
+              </div>
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
       </header>
 
       {/* Messages area */}
