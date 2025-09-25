@@ -1,3 +1,6 @@
+## Related Repositories
+- [Alice Chat Bot Backend](https://github.com/mohammed-saad-git/Alice-chat-bot-backend)
+
 # Alice Copilot Buddy (Frontend)
 
 A React + TypeScript frontend application that serves as the user interface for interacting with **Alice Chat Bot** (backend). This frontend handles prompt input, displays responses, and maintains session state.
